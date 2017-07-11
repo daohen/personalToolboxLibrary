@@ -9,8 +9,15 @@ import android.text.TextUtils;
  */
 public class Strings {
 
+    public static final String PROTOCOL_HTTP = "http://";
+    public static final String PROTOCOL_HTTPS = "https://";
+
     public static boolean isNull(String str){
         return TextUtils.isEmpty(str) || str.trim().length() == 0;
+    }
+
+    public static boolean isUrl(String str){
+        return !isNull(str) && (str.startsWith(PROTOCOL_HTTP) || str.startsWith(PROTOCOL_HTTPS));
     }
 
 }
