@@ -1,6 +1,7 @@
 package com.daohen.personal.toolbox.library.util;
 
 import android.content.Context;
+import android.view.WindowManager;
 
 /**
  * CREATE BY ALUN
@@ -16,11 +17,25 @@ public class Contexts {
     }
 
     public static Context getContext(){
-        if (context == null)
-            throw new NullPointerException("需要先调用setContext");
+        checkNull();
 
         return context;
     }
 
+    public static int getScreenWidth(){
+        checkNull();
 
+        return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+    }
+
+    public static int getScreenHeight(){
+        checkNull();
+
+        return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();
+    }
+
+    private static void checkNull(){
+        if (context == null)
+            throw new NullPointerException("需要先调用setContext");
+    }
 }
