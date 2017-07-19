@@ -9,6 +9,8 @@ import android.util.Log;
  */
 public class Logs {
 
+    private Logs(){}
+
     private static final String TAG = "daohen";
 
     public static void e(String msg){

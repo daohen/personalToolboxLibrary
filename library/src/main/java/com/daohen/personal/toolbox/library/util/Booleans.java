@@ -7,6 +7,7 @@ package com.daohen.personal.toolbox.library.util;
  */
 public class Booleans {
 
+    private Booleans(){}
 
     private static boolean release;
     public static void setRelease(boolean isRelease){

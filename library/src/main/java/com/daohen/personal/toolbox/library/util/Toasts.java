@@ -9,6 +9,8 @@ import android.widget.Toast;
  */
 public class Toasts {
 
+    private Toasts(){}
+
     public static void showLong(String msg){
         Toast.makeText(Contexts.getContext(), msg, Toast.LENGTH_LONG).show();
     }

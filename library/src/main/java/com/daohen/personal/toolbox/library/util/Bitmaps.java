@@ -11,6 +11,8 @@ import java.io.ByteArrayOutputStream;
  */
 public class Bitmaps {
 
+    private Bitmaps(){}
+
     public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle){
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, output);

@@ -9,6 +9,8 @@ import android.text.TextUtils;
  */
 public class Strings {
 
+    private Strings(){}
+
     public static final String PROTOCOL_HTTP = "http://";
     public static final String PROTOCOL_HTTPS = "https://";
 

@@ -12,6 +12,8 @@ public class Contexts {
 
     private static Context context;
 
+    private Contexts(){}
+
     public static void setContext(Context context){
         Contexts.context = context;
     }
@@ -36,6 +38,6 @@ public class Contexts {
 
     private static void checkNull(){
         if (context == null)
-            throw new NullPointerException("需要先调用setContext");
+            throw new NullPointerException("请在Application里面先调用Contexts.setContext()");
     }
 }

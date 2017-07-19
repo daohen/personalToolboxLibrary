@@ -6,6 +6,8 @@ package com.daohen.personal.toolbox.library.util;
 
 public class Files {
 
+    private Files(){}
+
     /**
      * /data/data/<application package>/cache
      * @return
