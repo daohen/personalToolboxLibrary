@@ -1,6 +1,8 @@
 package com.daohen.personal.toolbox.library.util;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.WindowManager;
 
 /**
@@ -20,20 +22,38 @@ public class Contexts {
 
     public static Context getContext(){
         checkNull();
-
         return context;
     }
 
     public static int getScreenWidth(){
         checkNull();
-
         return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
     }
 
     public static int getScreenHeight(){
         checkNull();
-
         return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();
+    }
+
+    public static int getColor(int colorRes){
+        checkNull();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return context.getColor(colorRes);
+        }
+        return context.getResources().getColor(colorRes, null);
+    }
+
+    public static String getString(int stringRes){
+        checkNull();
+        return context.getString(stringRes);
+    }
+
+    public static Drawable getDrawable(int drawableRes){
+        checkNull();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return context.getDrawable(drawableRes);
+        }
+        return context.getResources().getDrawable(drawableRes, null);
     }
 
     private static void checkNull(){
