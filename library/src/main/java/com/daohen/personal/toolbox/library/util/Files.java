@@ -4,11 +4,16 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by alun on 17/7/18.
@@ -131,5 +136,29 @@ public class Files {
 
     private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public static boolean bitmapToFile(Bitmap bitmap, File outFile, int quality, Bitmap.CompressFormat format) throws IOException {
+        if (bitmap == null)return false;
+        boolean ret = false;
+        FileOutputStream out = null;
+        try {
+            outFile.mkdirs();
+
+            out = new FileOutputStream(outFile);
+            ret = bitmap.compress(format, quality, out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.flush();
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return ret;
     }
 }
