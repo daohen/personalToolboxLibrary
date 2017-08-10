@@ -23,6 +23,10 @@ public class Strings {
         return !isNull(str) && (str.startsWith(PROTOCOL_HTTP) || str.startsWith(PROTOCOL_HTTPS));
     }
 
+    public static boolean isPhoneNumber(String str){
+        return !isNull(str) && str.length() == 11;
+    }
+
     public static String base64Encode(String str){
         return Base64.encodeToString(str.getBytes(), Base64.DEFAULT);
     }
