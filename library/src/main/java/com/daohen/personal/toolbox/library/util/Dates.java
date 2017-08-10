@@ -2,6 +2,8 @@ package com.daohen.personal.toolbox.library.util;
 
 import android.support.annotation.StringDef;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -19,6 +21,7 @@ public class Dates {
     public static final String FORMAT_3 = "yyyy-MM-dd hh:mm:ss";
 
     @StringDef({FORMAT_1, FORMAT_2, FORMAT_3})
+    @Retention(RetentionPolicy.SOURCE)
     public @interface DateFormat{}
 
     public static String getString(Date date, @DateFormat String format){
