@@ -143,9 +143,7 @@ public class Files {
         boolean ret = false;
         FileOutputStream out = null;
         try {
-            outFile.mkdirs();
-
-            out = new FileOutputStream(outFile);
+            out = new FileOutputStream(outFile.getPath());
             ret = bitmap.compress(format, quality, out);
         } catch (Exception e) {
             e.printStackTrace();
