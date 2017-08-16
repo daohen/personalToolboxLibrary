@@ -138,14 +138,12 @@ public class Files {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
-    public static boolean bitmapToFile(Bitmap bitmap, File outFile, int quality, Bitmap.CompressFormat format) throws IOException {
+    public static boolean bitmapToFile(Bitmap bitmap, String outPath, int quality, Bitmap.CompressFormat format) throws IOException {
         if (bitmap == null)return false;
         boolean ret = false;
         FileOutputStream out = null;
         try {
-            outFile.mkdirs();
-
-            out = new FileOutputStream(outFile);
+            out = new FileOutputStream(outPath);
             ret = bitmap.compress(format, quality, out);
         } catch (Exception e) {
             e.printStackTrace();
