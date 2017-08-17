@@ -1,6 +1,6 @@
 package com.daohen.personal.toolbox.library;
 
-import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 
 import com.daohen.personal.toolbox.library.util.Booleans;
@@ -23,8 +23,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return gDefault.get();
     }
 
-    public void init(Application application, Intent errorIntent){
-        this.application = application;
+    public void init(Context application, Intent errorIntent){
+        this.context = application;
         this.errorIntent = errorIntent;
     }
 
@@ -38,12 +38,12 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             errorIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_CLEAR_TASK
                     | Intent.FLAG_ACTIVITY_NEW_TASK);
-            application.startActivity(errorIntent);
-            System.exit(0);// 关闭已崩溃的app进程
+            context.startActivity(errorIntent);
+            System.exit(1);// 关闭已崩溃的app进程
         }
     }
 
-    private Application application;
+    private Context context;
     private Intent errorIntent;
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     private CrashHandler(){
