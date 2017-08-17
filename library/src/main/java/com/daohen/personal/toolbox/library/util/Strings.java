@@ -1,5 +1,6 @@
 package com.daohen.personal.toolbox.library.util;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Base64;
 
@@ -27,12 +28,22 @@ public class Strings {
         return !isNull(str) && str.length() == 11;
     }
 
-    public static String base64Encode(String str){
+    public static String base64Encode(@NonNull String str){
         return Base64.encodeToString(str.getBytes(), Base64.DEFAULT);
     }
 
-    public static String base64Decode(String str){
+    public static String base64Decode(@NonNull String str){
         return new String(Base64.decode(str,Base64.DEFAULT));
     }
 
+    public static String generateFileNameFromDate(@NonNull String suffix){
+        StringBuilder sb = new StringBuilder();
+        sb.append(Dates.getCurrentString(Dates.FORMAT_1));
+        if (suffix.startsWith("."))
+            sb.append(suffix);
+        else
+            sb.append(".").append(suffix);
+
+        return sb.toString();
+    }
 }

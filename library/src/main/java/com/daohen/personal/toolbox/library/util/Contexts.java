@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.WindowManager;
 
+
 /**
  * CREATE BY ALUN
  * EMAIL: alunfeixue2011@gmail.com
@@ -60,4 +61,5 @@ public class Contexts {
         if (context == null)
             throw new NullPointerException("请在Application里面先调用Contexts.setContext()");
     }
+
 }

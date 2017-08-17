@@ -1,10 +1,11 @@
 package com.daohen.personal.toolbox.library;
 
+import android.app.Application;
 import android.content.Intent;
-import android.os.Environment;
 
-import com.daohen.personal.toolbox.library.util.Contexts;
-import com.daohen.personal.toolbox.library.util.Logs;
+import com.daohen.personal.toolbox.library.util.Booleans;
+import com.daohen.personal.toolbox.library.util.Files;
+import com.daohen.personal.toolbox.library.util.Strings;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -22,28 +23,27 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return gDefault.get();
     }
 
-    public void setErrorIntent(Intent intent){
-        this.errorIntent = intent;
+    public void init(Application application, Intent errorIntent){
+        this.application = application;
+        this.errorIntent = errorIntent;
     }
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-        Logs.e("12233444");
-
-        if (!handleException(e) && mDefaultHandler != null) {
+        if (!Booleans.isRelease() || !handleException(e) && mDefaultHandler != null) {
             // 如果用户没有处理则让系统默认的异常处理器来处
-            Logs.e("yyyyyyyy");
             mDefaultHandler.uncaughtException(t, e);
         } else {
             // 跳转到崩溃提示Activity
-            Logs.e("nnnnnnn");
-            errorIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            Contexts.getContext().startActivity(errorIntent);
-            System.exit(0);// 关闭已奔溃的app进程
+            errorIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+            application.startActivity(errorIntent);
+            System.exit(0);// 关闭已崩溃的app进程
         }
-
     }
 
+    private Application application;
     private Intent errorIntent;
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     private CrashHandler(){
@@ -57,8 +57,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
 
         // 收集错误信息
-//        getCrashInfo(ex);
-
+        getCrashInfo(ex);
         return true;
     }
 
@@ -73,13 +72,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
         printWriter.close();
         String errorMessage = writer.toString();
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-//            String mFilePath = Environment.getExternalStorageDirectory() + "/" + App.ERROR_FILENAME;
-//            FileTxt.WirteTxt(mFilePath, FileTxt.ReadTxt(mFilePath) + '\n' + errorMessage);
-        } else {
-//            Log.i(App.TAG, "哦豁，说好的SD呢...");
-        }
-
+        String errPath = Files.getCrashPath() + "/crash_" + Strings.generateFileNameFromDate("txt");
+        Files.writeStringToFile(errPath, errorMessage);
     }
 
     private static final Singleton<CrashHandler> gDefault = new Singleton<CrashHandler>() {

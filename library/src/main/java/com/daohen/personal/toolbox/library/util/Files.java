@@ -12,8 +12,10 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 /**
  * Created by alun on 17/7/18.
@@ -39,6 +41,18 @@ public class Files {
         return Contexts.getContext().getFilesDir().getPath();
     }
 
+    /**
+     * /storage/emulated/0
+     * @return
+     */
+    public static String getStorageSdcardPath(){
+        return Environment.getExternalStorageDirectory().getPath();
+    }
+
+    public static String getCrashPath(){
+        return getFilesPath() + "/crash";
+    }
+
     public static String getPathFromUri(Uri uri){
         String path;
         if ("file".equalsIgnoreCase(uri.getScheme())){//使用第三方应用打开
@@ -49,6 +63,37 @@ public class Files {
             path = getRealPathFromURI(Contexts.getContext(), uri);
         }
         return path;
+    }
+
+    public static boolean writeStringToFile(String filePath, String content){
+        FileOutputStream fos = null;
+        OutputStreamWriter osw = null;
+        try {
+            File file = new File(filePath);
+            file.getParentFile().mkdirs();
+            fos = new FileOutputStream(file);
+            osw = new OutputStreamWriter(fos);
+            osw.append(content);
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (osw != null){
+                    osw.flush();
+                    osw.close();
+                }
+                if (fos != null){
+                    fos.flush();
+                    fos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     private static String getRealPathFromURI(Context context, Uri contentUri) {

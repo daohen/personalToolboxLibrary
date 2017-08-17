@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.daohen.personal.toolbox.library.CrashHandler;
+import com.daohen.personal.toolbox.library.util.Booleans;
+import com.daohen.personal.toolbox.library.util.Contexts;
 
 /**
  * CREATE BY DAOHEN
@@ -17,6 +19,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        CrashHandler.get().setErrorIntent(new Intent(this, ErrorActivity.class));
+        Contexts.setContext(this);
+        CrashHandler.get().init(this, new Intent(this, ErrorActivity.class));
     }
+
 }
