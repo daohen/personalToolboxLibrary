@@ -20,7 +20,8 @@ public class App extends Application {
         super.onCreate();
 
         Contexts.setContext(this);
-        CrashHandler.get().init(this, new Intent(this, ErrorActivity.class));
+        Booleans.setRelease(true);
+        CrashHandler.get().init(getApplicationContext(), new Intent(this, MainActivity.class));
     }
 
 }
