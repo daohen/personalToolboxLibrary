@@ -3,7 +3,9 @@ package com.daohen.personal.toolbox.library.util;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.view.WindowManager;
+import android.util.DisplayMetrics;
+
+import com.daohen.personal.toolbox.library.Singleton;
 
 
 /**
@@ -15,28 +17,28 @@ public class Contexts {
 
     private static Context context;
 
-    private Contexts(){}
 
-    public static void setContext(Context context){
+    private DisplayMetrics displayMetrics;
+    public void setContext(Context context){
         Contexts.context = context;
+        displayMetrics = context.getResources().getDisplayMetrics();
     }
 
-    public static Context getContext(){
-        checkNull();
+    public Context getContext(){
         return context;
     }
 
-    public static int getScreenWidth(){
+    public int getScreenWidth(){
         checkNull();
-        return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+        return displayMetrics.widthPixels;
     }
 
-    public static int getScreenHeight(){
+    public int getScreenHeight(){
         checkNull();
-        return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getHeight();
+        return displayMetrics.heightPixels;
     }
 
-    public static int getColor(int colorRes){
+    public int getColor(int colorRes){
         checkNull();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getColor(colorRes);
@@ -44,12 +46,12 @@ public class Contexts {
         return context.getResources().getColor(colorRes, null);
     }
 
-    public static String getString(int stringRes){
+    public String getString(int stringRes){
         checkNull();
         return context.getString(stringRes);
     }
 
-    public static Drawable getDrawable(int drawableRes){
+    public Drawable getDrawable(int drawableRes){
         checkNull();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return context.getDrawable(drawableRes);
@@ -57,9 +59,27 @@ public class Contexts {
         return context.getResources().getDrawable(drawableRes, null);
     }
 
-    private static void checkNull(){
-        if (context == null)
-            throw new NullPointerException("请在Application里面先调用Contexts.setContext()");
+    public int dip2px(float dipValue) {
+        return (int) (dipValue * displayMetrics.density + 0.5f);
     }
 
+    public int px2dip(float pxValue) {
+        return (int) (pxValue / displayMetrics.density + 0.5f);
+    }
+
+    public int sp2px(float spValue) {
+        return (int) (spValue * displayMetrics.scaledDensity + 0.5f);
+    }
+
+    private static final Singleton<Contexts> gDefault = new Singleton<Contexts>() {
+        @Override
+        protected Contexts create() {
+            return new Contexts();
+        }
+    };
+
+    private void checkNull(){
+        if (context == null)
+            throw new NullPointerException("请在Application里面先调用Contexts.get().setContext()");
+    }
 }
