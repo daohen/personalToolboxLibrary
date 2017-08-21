@@ -15,12 +15,14 @@ import com.daohen.personal.toolbox.library.Singleton;
  */
 public class Contexts {
 
-    private static Context context;
+    public static Contexts get(){
+        return gDefault.get();
+    }
 
-
+    private Context context;
     private DisplayMetrics displayMetrics;
     public void setContext(Context context){
-        Contexts.context = context;
+        this.context = context;
         displayMetrics = context.getResources().getDisplayMetrics();
     }
 
