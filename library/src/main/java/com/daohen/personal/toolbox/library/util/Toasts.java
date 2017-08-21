@@ -12,23 +12,23 @@ public class Toasts {
     private Toasts(){}
 
     public static void showLong(String msg){
-        Toast.makeText(Contexts.getContext(), msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(Contexts.get().getContext(), msg, Toast.LENGTH_LONG).show();
     }
 
     public static void showLong(int rId){
-        Toast.makeText(Contexts.getContext(), rId, Toast.LENGTH_LONG).show();
+        Toast.makeText(Contexts.get().getContext(), rId, Toast.LENGTH_LONG).show();
     }
 
     public static void show(int rId, int duration){
-        Toast.makeText(Contexts.getContext(), rId, duration).show();
+        Toast.makeText(Contexts.get().getContext(), rId, duration).show();
     }
 
     public static void showShort(String msg){
-        Toast.makeText(Contexts.getContext(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Contexts.get().getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public static void showShort(int rId){
-        Toast.makeText(Contexts.getContext(), rId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Contexts.get().getContext(), rId, Toast.LENGTH_SHORT).show();
     }
 
 }

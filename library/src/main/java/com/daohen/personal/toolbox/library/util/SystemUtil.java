@@ -11,8 +11,8 @@ public class SystemUtil {
      * @return
      */
     public static boolean inMainProcess() {
-        String packageName = Contexts.getContext().getPackageName();
-        String processName = getProcessName(Contexts.getContext());
+        String packageName = Contexts.get().getContext().getPackageName();
+        String processName = getProcessName(Contexts.get().getContext());
         return packageName.equals(processName);
     }
 

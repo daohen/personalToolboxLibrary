@@ -30,7 +30,7 @@ public class Files {
      * @return
      */
     public static String getCachePath(){
-        return Contexts.getContext().getCacheDir().getPath();
+        return Contexts.get().getContext().getCacheDir().getPath();
     }
 
     /**
@@ -38,7 +38,7 @@ public class Files {
      * @return
      */
     public static String getFilesPath(){
-        return Contexts.getContext().getFilesDir().getPath();
+        return Contexts.get().getContext().getFilesDir().getPath();
     }
 
     /**
@@ -58,9 +58,9 @@ public class Files {
         if ("file".equalsIgnoreCase(uri.getScheme())){//使用第三方应用打开
             path = uri.getPath();
         } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
-            path = getPath(Contexts.getContext(), uri);
+            path = getPath(Contexts.get().getContext(), uri);
         } else {//4.4以下下系统调用方法
-            path = getRealPathFromURI(Contexts.getContext(), uri);
+            path = getRealPathFromURI(Contexts.get().getContext(), uri);
         }
         return path;
     }
