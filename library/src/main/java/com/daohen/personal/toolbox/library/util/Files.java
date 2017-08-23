@@ -42,6 +42,24 @@ public class Files {
     }
 
     /**
+     * /storage/emulated/0/Android/data/<application package>/cache
+     * @return
+     */
+    public static String getExternalCachePath(){
+        return Contexts.get().getContext().getExternalCacheDir().getPath();
+    }
+
+    /**
+     * type = null /storage/emulated/0/Android/data/<application package>/files
+     * type = Environment.DIRECTORY_DCIM……
+     * @param type
+     * @return
+     */
+    public static String getExternalFilesPath(String type){
+        return Contexts.get().getContext().getExternalFilesDir(type).getPath();
+    }
+
+    /**
      * /storage/emulated/0
      * @return
      */

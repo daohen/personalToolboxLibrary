@@ -1,8 +1,13 @@
 package com.daohen.personaltoolboxlibrary;
 
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import com.daohen.personal.toolbox.library.util.Files;
+import com.daohen.personal.toolbox.library.util.Logs;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +26,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        Logs.e(Files.getExternalCachePath());
+        Logs.e(Files.getExternalFilesPath(null));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_ALARMS));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_DCIM));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_DOCUMENTS));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_DOWNLOADS));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_MOVIES));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_PICTURES));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_RINGTONES));
+        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_PODCASTS));
 
     }
 }
