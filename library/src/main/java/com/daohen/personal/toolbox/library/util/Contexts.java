@@ -42,7 +42,7 @@ public class Contexts {
 
     public int getColor(int colorRes){
         checkNull();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return context.getColor(colorRes);
         }
         return context.getResources().getColor(colorRes, null);
@@ -55,7 +55,7 @@ public class Contexts {
 
     public Drawable getDrawable(int drawableRes){
         checkNull();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return context.getDrawable(drawableRes);
         }
         return context.getResources().getDrawable(drawableRes, null);
