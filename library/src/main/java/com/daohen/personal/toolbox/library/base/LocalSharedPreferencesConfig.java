@@ -67,6 +67,26 @@ public class LocalSharedPreferencesConfig {
         return getLong(key, 0L);
     }
 
+    public void setFloat(String key, float value){
+        sp.edit().putFloat(key, value).apply();
+    }
+
+    public float getFloat(String key, float dvalue){
+        return sp.getFloat(key, dvalue);
+    }
+
+    public float getFloat(String key){
+        return getFloat(key, 0f);
+    }
+
+    public void clear(){
+        sp.edit().clear().apply();
+    }
+
+    public void remove(String key){
+        sp.edit().remove(key).apply();
+    }
+
     public SharedPreferences getSp(){
         return sp;
     }
