@@ -1,6 +1,8 @@
 package com.daohen.personal.toolbox.library.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -59,6 +61,12 @@ public class Contexts {
             return context.getDrawable(drawableRes);
         }
         return context.getResources().getDrawable(drawableRes, null);
+    }
+
+    public Bitmap getBitmapForResourceName(String name){
+        checkNull();
+        int rid = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+        return BitmapFactory.decodeResource(context.getResources(), rid);
     }
 
     public int dip2px(float dipValue) {
