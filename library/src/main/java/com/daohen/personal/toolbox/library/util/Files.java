@@ -201,7 +201,7 @@ public class Files {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
-    public static boolean bitmapToFile(Bitmap bitmap, String outPath, int quality, Bitmap.CompressFormat format) throws IOException {
+    public static boolean bitmapToFile(Bitmap bitmap, String outPath, int quality, Bitmap.CompressFormat format) {
         if (bitmap == null)return false;
         boolean ret = false;
         FileOutputStream out = null;
@@ -222,4 +222,6 @@ public class Files {
         }
         return ret;
     }
+
+
 }
