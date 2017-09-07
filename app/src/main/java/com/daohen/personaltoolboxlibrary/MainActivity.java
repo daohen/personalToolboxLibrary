@@ -27,16 +27,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Logs.e(Files.getExternalCachePath());
-        Logs.e(Files.getExternalFilesPath(null));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_ALARMS));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_DCIM));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_DOCUMENTS));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_DOWNLOADS));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_MOVIES));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_PICTURES));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_RINGTONES));
-        Logs.e(Files.getExternalFilesPath(Environment.DIRECTORY_PODCASTS));
-
+        Logs.e(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath());
     }
 }

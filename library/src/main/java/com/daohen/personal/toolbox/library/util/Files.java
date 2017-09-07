@@ -59,6 +59,7 @@ public class Files {
         return Contexts.get().getContext().getExternalFilesDir(type).getPath();
     }
 
+
     /**
      * /storage/emulated/0
      * @return
@@ -66,6 +67,17 @@ public class Files {
     public static String getStorageSdcardPath(){
         return Environment.getExternalStorageDirectory().getPath();
     }
+
+    /**
+     * /storage/emulated/0/下相关文件夹
+     * 如：type = Environment.DIRECTORY_PICTURES   @return /storage/emulated/0/Pictures
+     * @param type
+     * @return
+     */
+    public static String getExternalStoragePublicDirectory(String type){
+        return Environment.getExternalStoragePublicDirectory(type).getPath();
+    }
+
 
     public static String getCrashPath(){
         return getFilesPath() + "/crash";
