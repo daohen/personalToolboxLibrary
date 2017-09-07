@@ -201,12 +201,24 @@ public class Files {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
-    public static boolean bitmapToFile(Bitmap bitmap, String outPath, int quality, Bitmap.CompressFormat format) {
+    @Deprecated
+    public static boolean bitmapToFile(Bitmap bitmap, String outFile, int quality, Bitmap.CompressFormat format){
+        File file = new File(outFile);
+        if (!file.getParentFile().exists())
+            file.getParentFile().mkdirs();
+
+        return bitmapToFile(bitmap, file, quality, format);
+    }
+
+    public static boolean bitmapToFile(Bitmap bitmap, File outFile, int quality, Bitmap.CompressFormat format) {
         if (bitmap == null)return false;
         boolean ret = false;
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(outPath);
+            if (!outFile.getParentFile().exists())
+                outFile.getParentFile().mkdirs();
+
+            out = new FileOutputStream(outFile);
             ret = bitmap.compress(format, quality, out);
         } catch (Exception e) {
             e.printStackTrace();
@@ -222,6 +234,8 @@ public class Files {
         }
         return ret;
     }
+
+
 
 
 }
