@@ -10,12 +10,14 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.UUID;
 
 /**
  * Created by alun on 17/7/18.
@@ -24,6 +26,36 @@ import java.io.OutputStreamWriter;
 public class Files {
 
     private Files(){}
+
+    /**
+     * 根据当前毫秒数生成文件名
+     * @param prefix
+     * @param suffix
+     * @return
+     */
+    public static String randomWeakFileName(String prefix, @NonNull String suffix){
+        StringBuilder sb = new StringBuilder();
+        if (!Strings.isNull(prefix))
+            sb.append(prefix).append(Strings.SLASH) ;
+
+        sb.append(System.currentTimeMillis()).append(suffix);
+        return sb.toString();
+    }
+
+    /**
+     * 根据UUID生成文件名
+     * @param prefix
+     * @param suffix
+     * @return
+     */
+    public static String randomUUIDFileName(String prefix, @NonNull String suffix){
+        StringBuilder sb = new StringBuilder();
+        if (!Strings.isNull(prefix))
+            sb.append(prefix).append(Strings.SLASH);
+
+        sb.append(UUID.randomUUID().toString()).append(suffix);
+        return sb.toString();
+    }
 
     /**
      * /data/data/<application package>/cache
