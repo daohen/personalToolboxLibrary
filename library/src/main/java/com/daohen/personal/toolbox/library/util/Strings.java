@@ -17,6 +17,10 @@ public class Strings {
     public static final String PROTOCOL_HTTP = "http://";
     public static final String PROTOCOL_HTTPS = "https://";
 
+    public static final String SUFFIX_JPG = ".jpg";
+    public static final String SUFFIX_JPEG = ".jpeg";
+    public static final String SUFFIX_PNG = ".png";
+
     public static boolean isNull(String str){
         return TextUtils.isEmpty(str) || str.trim().length() == 0;
     }
