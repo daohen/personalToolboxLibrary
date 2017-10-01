@@ -23,6 +23,10 @@ public class Toasts {
         Toast.makeText(Contexts.get().getContext(), rId, duration).show();
     }
 
+    public static void show(String msg){
+        Toast.makeText(Contexts.get().getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
     public static void showShort(String msg){
         Toast.makeText(Contexts.get().getContext(), msg, Toast.LENGTH_SHORT).show();
     }

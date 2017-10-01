@@ -35,10 +35,12 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             mDefaultHandler.uncaughtException(t, e);
         } else {
             // 跳转到崩溃提示Activity
-            errorIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(errorIntent);
+            if (errorIntent != null){
+                errorIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        | Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(errorIntent);
+            }
             System.exit(1);// 关闭已崩溃的app进程
         }
     }
