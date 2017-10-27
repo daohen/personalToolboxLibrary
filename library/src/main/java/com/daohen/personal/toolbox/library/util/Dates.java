@@ -18,12 +18,14 @@ public class Dates {
 
     public static final String FORMAT_1 = "yyyyMMddhhmmss";
     public static final String FORMAT_2 = "yyyy/MM/dd/ hh:mm:ss";
+    public static final String FORMAT_2_24 = "yyyy/MM/dd/ HH:mm:ss";
     public static final String FORMAT_3 = "yyyy-MM-dd hh:mm:ss";
+    public static final String FORMAT_3_24 = "yyyy-MM-dd HH:mm:ss";
     public static final String FORMAT_4 = "yyyy-MM-dd";
     public static final String FORMAT_5 = "yyyy/MM/dd";
     public static final String FORMAT_6 = "yyyy.MM.dd";
 
-    @StringDef({FORMAT_1, FORMAT_2, FORMAT_3, FORMAT_4, FORMAT_5, FORMAT_6})
+    @StringDef({FORMAT_1, FORMAT_2, FORMAT_2_24, FORMAT_3, FORMAT_3_24, FORMAT_4, FORMAT_5, FORMAT_6})
     @Retention(RetentionPolicy.SOURCE)
     public @interface DateFormat{}
 
