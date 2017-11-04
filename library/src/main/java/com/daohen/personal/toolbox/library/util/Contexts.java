@@ -47,7 +47,7 @@ public class Contexts {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getColor(colorRes);
         }
-        return context.getResources().getColor(colorRes, null);
+        return context.getResources().getColor(colorRes);
     }
 
     public String getString(int stringRes){
@@ -60,7 +60,7 @@ public class Contexts {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return context.getDrawable(drawableRes);
         }
-        return context.getResources().getDrawable(drawableRes, null);
+        return context.getResources().getDrawable(drawableRes);
     }
 
     public Bitmap getBitmapForResourceName(String name){
