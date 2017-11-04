@@ -44,7 +44,7 @@ public class Contexts {
 
     public int getColor(int colorRes){
         checkNull();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getColor(colorRes);
         }
         return context.getResources().getColor(colorRes, null);
