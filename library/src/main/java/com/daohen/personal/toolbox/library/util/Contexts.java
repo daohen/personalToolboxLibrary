@@ -57,7 +57,7 @@ public class Contexts {
 
     public Drawable getDrawable(int drawableRes){
         checkNull();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return context.getDrawable(drawableRes);
         }
         return context.getResources().getDrawable(drawableRes, null);
