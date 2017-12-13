@@ -58,6 +58,18 @@ public class Files {
     }
 
     /**
+     * 根据是否有sdcard，自动判别返回相应可用要路径
+     * @return
+     */
+    public static String getRootPath(){
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+            return getExternalFilesPath(null);
+        } else {
+            return getFilesPath();
+        }
+    }
+
+    /**
      * /data/data/<application package>/cache
      * @return
      */
