@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Base64;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * CREATE BY ALUN
  * EMAIL: alunfeixue2011@gmail.com
@@ -50,5 +53,15 @@ public class Strings {
             sb.append(".").append(suffix);
 
         return sb.toString();
+    }
+
+    public static String replaceBlank(String src) {
+        String dest = "";
+        if (src != null) {
+            Pattern pattern = Pattern.compile("\t|\r|\n|\\s*");
+            Matcher matcher = pattern.matcher(src);
+            dest = matcher.replaceAll("");
+        }
+        return dest;
     }
 }
