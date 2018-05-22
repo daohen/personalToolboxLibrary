@@ -16,6 +16,10 @@ public class LocalSharedPreferencesConfig {
     private SharedPreferences sp;
 
     public LocalSharedPreferencesConfig(String name){
+        transferSharedPreferences(name);
+    }
+
+    public void transferSharedPreferences(String name){
         sp = Contexts.get().getContext().getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
