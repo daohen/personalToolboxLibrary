@@ -63,6 +63,21 @@ public class Contexts {
         return context.getResources().getDrawable(drawableRes);
     }
 
+    public int getDimensionPixelSize(int dimensionRes){
+        checkNull();
+        return context.getResources().getDimensionPixelSize(dimensionRes);
+    }
+
+    public int getDimensionPixelOffset(int dimensionRes){
+        checkNull();
+        return context.getResources().getDimensionPixelOffset(dimensionRes);
+    }
+
+    public float getDimension(int dimensionRes){
+        checkNull();
+        return context.getResources().getDimension(dimensionRes);
+    }
+
     public Bitmap getBitmapForResourceName(String name){
         checkNull();
         int rid = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
